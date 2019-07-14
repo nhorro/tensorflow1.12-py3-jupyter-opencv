@@ -1,22 +1,22 @@
 # tensorflow1.12-py3-jupyter-opencv
 
-Dockerfile from official tensorflow r1.12 GPU/Python3/Jupyter image with some additions: OpenCV, Graphviz, etc.
-This image uses Tensorflow 1.12, which is the latest supporting supporting CUDA 9.0.
-The purpose of this image is to develop on older machines with GPUs not supporting CUDA 10.0, such as Geforce GTX 950M.
+Dockerfile from official Tensorflow r1.12 GPU/Python3/Jupyter image with some additions.
 
-The development docker container is based on official tensorflow 1.12 GPU/Python3 image with some additions:
+The purpose of this image is to develop Tensorflow and OpenCV applications with GPU support development in older machines not supporting CUDA 10.0, such as Geforce GTX 950M.
 
-- Additions:
-  - OpenCV
-  - requests
-  - Graphviz and PyDot (for Keras model diagrams)
+This image uses Tensorflow 1.12, which is the latest supporting supporting CUDA 9.0 and adds:
 
-Jupyter Notebooks are served from the original directory /tf/notebooks.
+- OpenCV (built from source)
+- requests, tensorflow-serving-api
+- Graphviz and PyDot (for Keras model diagrams).
+
+Jupyter Notebooks are served from the same directory as in the official image: /tf/notebooks with token and password disabled.
 
 ## Usage example
 
-Run a jupyter notebook server mounting ./my-notebooks:
+Run a Jupyter notebook server mounting directory ./my-notebooks:
 
 ```bash
-docker run -it --rm --runtime=nvidia -v $(realpath $PWD/my-notebooks):/tf/notebooks --name tensorflowdev1 -p 8888:8888 -p :8501 custom-tensorflow1.12-py3-jupyter-opencv
+docker run -it --rm --runtime=nvidia -v $(realpath $PWD/my-notebooks):/tf/notebooks -p 8888:8888 nhorro/tensorflow1.12-py3-jupyter-opencv:latest
 ```
+
