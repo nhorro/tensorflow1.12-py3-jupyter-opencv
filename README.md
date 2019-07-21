@@ -6,8 +6,8 @@ The purpose of this image is to develop Tensorflow and OpenCV applications with 
 
 This image uses Tensorflow 1.12, which is the latest supporting supporting CUDA 9.0 and adds:
 
-- OpenCV (built from source)
-- requests, tensorflow-serving-api
+- OpenCV 4.1 with ffmpeg and gstreamer to enable video I/O (built from source)
+- requests
 - Graphviz and PyDot (for Keras model diagrams).
 
 Jupyter Notebooks are served from the same directory as in the official image: /tf/notebooks with token and password disabled.
@@ -19,4 +19,3 @@ Run a Jupyter notebook server mounting directory ./my-notebooks:
 ```bash
 docker run -it --rm --runtime=nvidia -v $(realpath $PWD/my-notebooks):/tf/notebooks -p 8888:8888 nhorro/tensorflow1.12-py3-jupyter-opencv:latest
 ```
-
