@@ -21,8 +21,8 @@ RUN apt-get install -y \
 
 RUN pip install --upgrade pip
 RUN git clone https://github.com/opencv/opencv.git /usr/local/src/opencv
-RUN git clone https://github.com/opencv/opencv_contrib.git
-RUN git clone https://github.com/opencv/opencv_extra.git
+RUN git clone https://github.com/opencv/opencv_contrib.git /usr/local/src/opencv_contrib
+RUN git clone https://github.com/opencv/opencv_extra.git /usr/local/src/opencv_extra
 RUN cd /usr/local/src/opencv/ && git checkout 4.1.0 && mkdir build
 RUN cd /usr/local/src/opencv/build && \
 	cmake -D CMAKE_INSTALL_TYPE=Release \
@@ -35,9 +35,13 @@ RUN cd /usr/local/src/opencv/build && \
 	      ldconfig && \
 	      make clean
 
-# Other libraries
+# Other libraries (FIXME do not install opencv-contrib-python, instead: build from source)
 RUN pip install requests \
-                pydot
+                pydot \
+                opencv-contrib-python \
+                tensorflow-serving-api==1.12.0 \
+				grpcio-tools \
+				influxdb
 
 # Default command with notebook
 CMD ["jupyter", "notebook", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''", "--notebook-dir=/tf/notebooks"]
