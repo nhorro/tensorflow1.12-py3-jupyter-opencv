@@ -41,7 +41,8 @@ RUN pip install requests \
                 opencv-contrib-python \
                 tensorflow-serving-api==1.12.0 \
 				grpcio-tools \
-				influxdb
+				influxdb \
+				elasticsearch
 
 # Default command with notebook
 CMD ["jupyter", "notebook", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''", "--notebook-dir=/tf/notebooks"]
