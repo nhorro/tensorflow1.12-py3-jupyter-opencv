@@ -5,6 +5,7 @@ RUN apt-get update -y
 RUN apt-get install -y \
 	git \
 	cmake \
+	pkg-config \
 	graphviz \
 	libtbb2 \
 	ffmpeg \
@@ -39,6 +40,8 @@ RUN cd /usr/local/src/opencv/build && \
 RUN pip install requests \
                 pydot \
                 opencv-contrib-python \
+                dlib \
+                imutils \
                 tensorflow-serving-api==1.12.0 \
 				grpcio-tools \
 				influxdb \
